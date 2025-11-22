@@ -1,0 +1,39 @@
+@use '../utils' as utile;
+.footer {
+    width: 100%;
+    background: #111;
+    color: #fff;
+    padding: 40px 20px;
+    @include utile.flexBox(flex, center, center, column);
+    gap: 20px;
+    text-align: center;
+  
+    .footer-logo {
+      @include utile.font(24px, 700);
+      color: var(--main-color);
+      margin-bottom: 10px;
+    }
+  
+    .footer-links {
+      @include utile.flexBox(flex, center, center, row, wrap);
+      gap: 20px;
+  
+      a {
+        color: #fff;
+        font-size: 24px;
+        transition: 0.3s;
+  
+        &:hover {
+          color: var(--main-color);
+          transform: scale(1.2);
+        }
+      }
+    }
+  
+    .footer-copy {
+      @include utile.font(14px, 400);
+      color: #aaa;
+      margin-top: 10px;
+    }
+  }
+  

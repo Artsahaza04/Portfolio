@@ -1,0 +1,77 @@
+@use '../utils' as utile;
+*{
+    @include utile.all();
+}
+html {
+    font-size: 60%;
+    overflow-x: hidden;
+  }
+  
+  body {
+    background-color: utile.$bg-color;
+    color: utile.$text-color;
+  }
+.header {
+    @include utile.position(fixed, 0, 0, auto, auto);
+    @include utile.size(100%,0);
+    padding: 4rem 12% 4rem;
+    background: rgba(0, 0, 0, 0.3);
+    @include utile.flexBox(flex, space-between, center, none, 1000);
+  }
+  
+  .logo {
+    position: relative;
+    font-size: 3.5rem;
+    color: utile.$text-color;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+  
+    @include utile.gradientText;
+    animation: log 5s linear infinite;
+  }
+  
+  @keyframes log{
+    0%{
+        transform: translateY(-10px);
+    }
+    20%{
+        transform: translateY(0px);
+    }
+    40%{
+        transform: translateY(-10px);
+    }
+    60%{
+        transform: translateY(0px);
+    }
+    80%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+  .navbar a {
+    display: inline-block;
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 35px;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s ease;
+  }
+  
+  .navbar a.active,
+  .navbar a:hover {
+    @include utile.gradientText;
+    border-bottom: 1px solid utile.$main-color;
+    font-size: 3rem;
+  }
+  
+  #menu-icon {
+    font-size: 3.6rem;
+    color: utile.$main-color;
+    display: none;
+  }
+  

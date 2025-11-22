@@ -1,0 +1,154 @@
+@use '../utils' as utile;
+
+// Responsive grand écran (desktop et +)
+@media (min-width: 992px) {
+  html {
+    font-size: 62.5%; // meilleure lisibilité sur grand écran
+  }
+
+  .header {
+    padding: 4rem 12%;
+  }
+
+  .navbar {
+    display: flex !important;
+    gap: 3rem;
+
+    a {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+  }
+
+  #menu-icon {
+    display: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .logo {
+    font-size: 4rem;
+  }
+
+  .navbar a {
+    font-size: 2rem;
+  }
+}
+
+
+// === ÉCRANS MOYENS À GRANDS ===
+@media (min-width: 992px) {
+  html { font-size: 62.5%; }
+
+  .home {
+    flex-direction: row;
+    gap: 12rem;
+  }
+
+  .home-content {
+    h1 { font-size: 5.6rem; }
+    h3 { font-size: 3.2rem; }
+    p  { font-size: 1.6rem; }
+  }
+
+  .home-img img {
+    @include utile.size(25vw, 25vw);
+  }
+
+  .services-container {
+    // grid-template-columns: repeat(2, 1fr);
+    // gap: 3rem;
+  
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 2.5rem;
+  }
+
+  .skills {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .container1 {
+    width: 45%;
+  }
+
+  .radial-bar {
+    width: 45%;
+  }
+
+  .contact-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .contact-box {
+    width: 300px;
+  }
+}
+
+// === ÉCRANS TRÈS GRANDS ===
+@media (min-width: 1280px) {
+  .home-content h1 { font-size: 7rem; }
+  .home-content h3 { font-size: 3.6rem; }
+
+  .heading { font-size: 9rem; }
+  .sub-title { font-size: 6rem; }
+
+  .services-container {
+    // grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+  }
+}
+
+
+// === DESKTOP & GRANDS ÉCRANS ===
+@media (min-width: 992px) {
+  .footer {
+    padding: 50px 40px;
+    gap: 25px;
+    text-align: center;
+
+    .footer-logo {
+      @include utile.font(28px, 700);
+      margin-bottom: 12px;
+    }
+
+    .footer-links {
+      flex-direction: row;
+      gap: 25px;
+
+      a {
+        font-size: 24px;
+      }
+    }
+
+    .footer-copy {
+      @include utile.font(14px, 400);
+      margin-top: 12px;
+    }
+  }
+}
+
+// === ÉCRANS TRÈS GRANDS ===
+@media (min-width: 1280px) {
+  .footer {
+    padding: 60px 60px;
+    gap: 30px;
+
+    .footer-logo {
+      @include utile.font(32px, 700);
+    }
+
+    .footer-links a {
+      font-size: 26px;
+    }
+
+    .footer-copy {
+      @include utile.font(16px, 400);
+    }
+  }
+}

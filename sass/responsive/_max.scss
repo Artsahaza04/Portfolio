@@ -1,0 +1,186 @@
+@use '../utils' as utile;
+
+// Responsive petit écran (tablette + téléphone)
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+
+  .header {
+    padding: 2rem 5%;
+  }
+
+  .navbar {
+    @include utile.position(absolute, 100%, auto, 0, auto);
+    @include utile.size(100%, auto);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 2rem 0;
+    border-top: 2px solid utile.$main-color;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+
+    &.active {
+      display: flex;
+    }
+
+    a {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+  }
+
+  #menu-icon {
+    display: block;
+    cursor: pointer;
+    z-index: 1000;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 50%;
+  }
+
+  .header {
+    padding: 3rem 3%;
+  }
+
+  .logo {
+    font-size: 2.8rem;
+  }
+
+  .navbar a {
+    font-size: 2rem;
+  }
+}
+
+
+// === TABLETTE & TÉLÉPHONE ===
+@media (max-width: 991px) {
+  html { font-size: 55%; }
+
+  section { padding: 8rem 5% 5rem; }
+
+  .home {
+    flex-direction: column-reverse;
+    gap: 5rem;
+    text-align: center;
+  }
+
+  .home-content {
+    h1 { font-size: 4rem; }
+    h3 { font-size: 2.2rem; }
+    p  { font-size: 1.4rem; }
+  }
+
+  .home-img img {
+    @include utile.size(200px, 200px);
+  }
+
+  .btn-group { justify-content: center; }
+
+  .social-icons a {
+    @include utile.size(4rem, 4rem);
+    font-size: 2rem;
+    margin: 1rem;
+  }
+
+  .services-container {
+    grid-template-columns: 1fr;
+  }
+
+  .skills {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .container1 {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .radial-bar {
+    width: 100% !important;
+  }
+
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-box {
+    width: 90%;
+  }
+
+  .heading { font-size: 4rem; }
+  .sub-title { font-size: 3rem; }
+}
+
+// === PETITS TÉLÉPHONES ===
+@media (max-width: 600px) {
+  html { font-size: 50%; }
+
+  .home-content h1 { font-size: 3rem; }
+  .home-content h3 { font-size: 1.8rem; }
+
+  .home-img img {
+    @include utile.size(150px, 150px);
+  }
+
+  .text-animation { font-size: 2rem; }
+  .contact-heading h2 { font-size: 3rem; }
+}
+
+
+
+// === TABLETTE & TÉLÉPHONE ===
+@media (max-width: 991px) {
+  .footer {
+    padding: 30px 15px;
+    gap: 15px;
+    text-align: center;
+
+    .footer-logo {
+      @include utile.font(20px, 700);
+      margin-bottom: 8px;
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: 10px;
+
+      a {
+        font-size: 20px;
+      }
+    }
+
+    .footer-copy {
+      @include utile.font(12px, 400);
+      margin-top: 8px;
+    }
+  }
+}
+
+// === PETITS TÉLÉPHONES ===
+@media (max-width: 600px) {
+  .footer {
+    padding: 20px 10px;
+    gap: 10px;
+
+    .footer-logo {
+      @include utile.font(18px, 700);
+    }
+
+    .footer-links a {
+      font-size: 18px;
+    }
+
+    .footer-copy {
+      @include utile.font(10px, 400);
+    }
+  }
+}
+

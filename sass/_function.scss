@@ -1,0 +1,112 @@
+@use 'variable' as utile;
+@mixin all {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    outline: none;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  @mixin size($w: 100%, $h: auto) {
+    width: $w;
+    height: $h;
+  }
+  
+  @mixin flexBox($df: flex, $jc: space-between, $al: center, $stl: none, $z: auto) {
+    display: $df;
+    justify-content: $jc;
+    align-items: $al;
+    list-style: $stl;
+    z-index: $z;
+  }
+  
+  @mixin position($p: absolute, $t: auto, $l: auto, $r: auto, $b: auto) {
+    position: $p;
+    top: $t;
+    left: $l;
+    right: $r;
+    bottom: $b;
+  }
+  
+  @mixin gradientText($deg: 45deg, $c1: rgb(225, 0, 255), $c2: #3cf) {
+    background: linear-gradient($deg, $c1, $c2);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+  // @mixin center-flex {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+  @mixin font($fs:56px,$fw:700) {
+    font-size: $fs;
+    font-weight: $fw;
+  }
+// Dans _mixins.scss
+@mixin button-style {
+  display: inline-block;
+  padding: 1rem 2.8rem;
+  background: utile.$main-color;
+  box-shadow: 0 0 25px utile.$main-color;
+  border-radius: 4rem;
+  font-size: 1.6rem;
+  color: black;
+  border: 2px solid transparent;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+@mixin shadow($color, $levels...) {
+  $shadows: ();
+  @each $level in $levels {
+    $shadows: append($shadows, 0 0 $level $color, comma);
+  }
+  box-shadow: $shadows;
+}
+// ==== Input focus reusable for contact forms ====
+@mixin inputFocus($focusColor: utile.$main-color, $spanColor: #ccc, $fontSizeFocus: 12px) {
+  input,
+  textarea {
+    @include size(100%, auto);
+    padding: 10px 5px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: none;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    @include font(16px, 400);
+
+    &:focus,
+    &:valid {
+      border-bottom-color: $focusColor;
+    }
+  }
+
+  span {
+    position: absolute;
+    left: 5px;
+    padding: 5px 0;
+    @include font(16px, 400);
+    pointer-events: none;
+    transition: 0.5s;
+    color: $spanColor;
+  }
+
+  input:focus ~ span,
+  input:valid ~ span,
+  textarea:focus ~ span,
+  textarea:valid ~ span {
+    color: $focusColor;
+    @include font($fontSizeFocus, 400);
+    transform: translateY(-20px);
+  }
+}
+
+  
+
+  

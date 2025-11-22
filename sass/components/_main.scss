@@ -1,0 +1,665 @@
+@use '../utils' as utile;
+
+section {
+  min-height: 100vh;
+  padding: 10rem 12% 10rem;
+}
+
+.home {
+  @include utile.size(100%, 100vh);
+  @include utile.flexBox(flex, center, center, none, 0);
+  gap: 15rem;
+}
+
+.home-content {
+  @include utile.flexBox(flex, center, baseline, none, 0);
+  text-align: left;
+  margin-top: 3rem;
+  flex-direction: column;
+
+  h1 {
+    // font-size: 56px;
+    // font-weight: 700;
+    @include utile.font(56px,700);
+  }
+
+  h3 {
+    @include utile.font(32px, 700);
+  }
+
+  p {
+    @include utile.font(16px, 0);
+    margin-top: 25px;
+    color: white
+  }
+}
+
+.h1nom {
+  @include utile.gradientText();
+  font-size: 50px !important;      // kely kokoa noho ilay 56px
+  font-weight: 600;                // azonao ahena koa ny épaisseur
+  line-height: 1.2;
+}
+
+.home-img {
+  border-radius: 50%;
+  animation: floatImages 4s ease-in-out infinite;
+
+  img {
+    @include utile.size(25vw, 25vw); 
+    border-radius: 50%;
+    box-shadow: 0 0 25px utile.$main-color;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+    @include utile.position(relative, 3rem, 0, 0, 0);
+  }
+
+  &:hover {
+    box-shadow: 0 0 25px utile.$main-color,
+                0 0 50px utile.$main-color,
+                0 0 100px utile.$main-color;
+  }
+}
+
+@keyframes floatImages {
+  0%   { transform: translateY(0); }
+  25%  { transform: translateY(-24px); }
+  50%  { transform: rotateY(180deg); }
+  100% { transform: translateY(0); }
+}
+
+.social-icons a {
+  @include utile.flexBox(inline-flex, center, center);
+  @include utile.size(4.5rem, 4.5rem);
+  background: transparent;
+  border: 2px solid utile.$main-color;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  color: utile.$main-color;
+  margin: 3rem 1.5rem 3rem 0;
+  transition: 0.3s ease-in-out;
+  animation: icons 3s linear infinite;
+
+  &:hover {
+    color: utile.$text-color;
+    transform: scale(1.3) translateY(-5px);
+    box-shadow: 0 0 25px utile.$main-color;
+    background-color: utile.$main-color;
+  }
+}
+
+@keyframes icons {
+  0%   { transform: translateY(0); }
+  25%  { transform: translateY(-24px); }
+  50%  { transform: translateX(20px); }
+  100% { transform: translateY(0); }
+}
+
+.btn, .btn1 {
+  @include utile.button-style();
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+
+.btn-group {
+  @include utile.flexBox(flex, 0, center);
+  gap: 1.5rem;
+
+  a:nth-of-type(2) {
+    background-color: black;
+    color: utile.$main-color;
+    border: 2px solid utile.$main-color;
+    box-shadow: 0 0 25px transparent;
+
+    &:hover {
+      box-shadow: 0 0 25px utile.$main-color;
+      background-color: utile.$main-color;
+      color: black;
+    }
+  }
+}
+
+.btn-download {
+  margin: 20px 0;
+  @include utile.flexBox(flex, center, center);
+
+  .btn-cv {
+    @include utile.button-style;
+    background: utile.$main-color;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    @include utile.flexBox(flex, center, center, row, nowrap);
+    gap: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+
+    i {
+      font-size: 18px;
+      color: #fff;
+    }
+
+    &:hover {
+      background: utile.$main-color, 10%;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+  }
+}
+
+
+.text-animation {
+  @include utile.font(30px, 600);
+  min-width: 280px;
+  color: white;
+
+  span {
+    position: relative;
+
+    &::before {
+      content: "web Developer";
+      color: utile.$main-color;
+      animation: word 5s infinite;
+    }
+
+    &::after {
+      content: "";
+      @include utile.size(calc(100% + 2px), 100%);
+      @include utile.position(absolute, 0, 0, -8px, 0);
+      border-left: 3px solid utile.$bg-color;
+      background-color: utile.$bg-color;
+      animation: cursor 1s infinite, typing 5s steps(14) infinite;
+    }
+  }
+}
+
+@keyframes cursor {
+  to {
+    border-left: 2px solid white;
+  }
+}
+
+@keyframes word {
+  0%, 20%   { content: "Physicien"; }
+  21%, 40%  { content: "Reparateur ordinateur"; }
+  41%, 60%  { content: "Designer Frontend"; }
+  61%, 80%  { content: "Développeur Web"; }
+  81%, 100% { content: "Développeur Python"; }
+}
+
+
+@keyframes typing {
+  10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95% {
+    width: 0;
+  }
+
+  5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85% {
+    width: calc(100% + 8px);
+  }
+}
+
+.heading {
+  font-size: 8rem;
+  text-align: center;
+  margin: 3rem 0;
+  @include utile.gradientText();
+}
+
+// ✅ Scrollbar styles ajoutés
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: utile.$main-color;
+}
+
+::-webkit-scrollbar-track {
+  background-color: utile.$bg-color;
+  width: 50px;
+}
+
+.education {
+  padding: 100px 15px;
+  background-color: utile.$bg-color;
+
+  h2 {
+    margin-bottom: 5rem;
+  }
+}
+
+.timeline-items {
+  max-width: 1200px;
+  margin: auto;
+  @include utile.flexBox(flex, null, null, null, null);
+  flex-wrap: wrap;
+  position: relative;
+
+  &::before {
+    content: "";
+    @include utile.position(absolute, 0, calc(50% - 1px), 0, 0);
+    @include utile.size(5px, 100%);
+    background-color: utile.$main-color;
+  }
+}
+
+.timeline-item {
+  margin-bottom: 40px;
+  width: 100%;
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:nth-child(odd) {
+    padding-right: calc(50% + 10px);
+    text-align: right;
+  }
+
+  &:nth-child(even) {
+    padding-left: calc(50% + 10px);
+  }
+}
+
+@keyframes scale4 {
+  0%   { transform: scale(0.8); }
+  50%  { background-color: utile.$bg-color; transform: translateY(-20px); }
+  100% { transform: scale(1); }
+}
+
+.timeline-dot {
+  @include utile.size(21px, 21px);
+  background-color: utile.$main-color;
+  @include utile.shadow(utile.$main-color, 25px, 50px);
+  @include utile.position(absolute, 10px, calc(50% - 8px), null, null);
+  border-radius: 50%;
+}
+
+.timeline-date {
+  @include utile.font(20px, 800);
+  color: white;
+  margin: 10px 0 15px;
+}
+
+.timeline-content {
+  background-color: utile.$second-bg-color;
+  border: 3px solid utile.$main-color;
+  padding: 30px 50px;
+  border-radius: 4rem;
+  box-shadow: 0 5px 10px utile.$main-color;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  animation: scale4 5s linear infinite;
+
+  &:hover {
+    transform: scale(1.05);
+    @include utile.shadow(utile.$main-color, 25px);
+  }
+
+  h3 {
+    @include utile.font(20px, 500);
+    color: utile.$main-color;
+    margin: 0 0 10px;
+  }
+
+  p {
+    @include utile.font(16px, 300);
+    color: white;
+    line-height: 22px;
+  }
+}
+
+// service
+.services {
+  background: utile.$bg-color;
+  color: black;
+
+  h2 {
+    margin-bottom: 5rem;
+    color: white;
+  }
+
+}
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2.5rem;
+}
+.service-box {
+  background-color: utile.$main-color;
+  height: 300px;
+  border-radius: 3rem;
+  border: 5px solid transparent;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  animation: slideright 4s linear infinite;
+
+  &:hover {
+    background: white;
+    color: black;
+    border: 5px solid utile.$main-color;
+    transform: scale(1.08);
+  }
+
+  .service-info {
+    @include utile.flexBox(flex, left ,baseline, null, null);
+    text-align: left;
+    max-height: 200px;
+    padding: 2rem 5rem;
+    flex-direction: column;
+    h4 {
+      @include utile.font(3rem, 800);
+      line-height: 2;
+      background: linear-gradient(45deg, rgb(136, 12, 61), rgb(41, 75, 162));
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+    }
+
+    p {
+      @include utile.font(1.6rem, 600);
+      max-height: 100px;
+      line-height: 1.7;
+      margin: auto;
+    }
+  }
+}
+
+@keyframes slideright {
+  0%   { transform: scale3d(0.6); }
+  25%  { background-color: #80b1d4; }
+  50%  { background-color: white; }
+  100% { transform: scale(1.02); }
+}
+
+//skills
+// ==== TITRES ====
+.sub-title {
+  text-align: center;
+  @include utile.font(60px);
+  padding: 10px 0 40px;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 3px;
+  background: linear-gradient(45deg, rgb(255, 0, 102), #3cf);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.skills {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;   // ✅ permet de passer en dessous si écran petit
+  gap: 50px;
+  margin-top: 50px;
+}
+
+// ==== CONTAINERS ====
+.container1 {
+  width: 550px;
+  padding: 40px;
+  background: #111;  // ✅ fond sombre pour contraste
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+.headings {
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 3px;
+  margin-bottom: 40px;
+  @include utile.font(28px);
+  color: #fff;
+}
+
+// ==== TECHNICAL BARS ====
+.Technical-bars {
+  .bar {
+    margin: 20px 0;
+
+    .info span {
+      @include utile.font(16px, 500);
+      color: #fff;
+      animation: showText 0.5s 1s linear forwards;
+      opacity: 0;
+    }
+
+    .progress-line {
+      position: relative;
+      width: 100%;
+      height: 10px;
+      border-radius: 10px;
+      background-color: #333;
+      overflow: hidden;
+
+      span {
+        position: absolute;
+        height: 100%;
+        border-radius: 10px;
+        background-color: utile.$main-color;
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: fillLine 2s forwards;
+
+        &::after {
+          content: attr(data-percent);
+          position: absolute;
+          padding: 2px 6px;
+          border-radius: 3px;
+          font-size: 12px;
+          background-color: #000;
+          color: #fff;
+          top: -25px;
+          right: 0;
+          opacity: 0;
+          animation: showText 0.5s 2s linear forwards;
+        }
+      }
+    }
+  }
+}
+
+// Pourcentages dynamiques
+.progress-line.html span      { width: 90%;  }
+.progress-line.css span       { width: 60%;  }
+.progress-line.bootstrap span { width: 50%;  }
+.progress-line.javascript span{ width: 20%;  }
+.progress-line.python span    { width: 30%;  }
+.progress-line.java span      { width: 35%;  }
+
+// ==== RADIAL BARS ====
+.radial-bars {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .radial-bar {
+    width: 45%;
+    height: 200px;
+    margin-bottom: 20px;
+    position: relative;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      width: 160px;
+      height: 160px;
+    }
+
+    .text {
+      @include utile.font(15px);
+      margin-top: 170px;
+      text-align: center;
+      color: #fff;
+      animation: scale3 4s linear infinite;
+    }
+
+    .percentage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @include utile.font(18px, 600);
+      color: #fff;
+      animation: showText 0.5s 1s forwards;
+      opacity: 0;
+    }
+  }
+}
+
+.progress-bar {
+  stroke-width: 12;
+  stroke: #222;
+  fill: none;
+  stroke-dasharray: 502;
+  stroke-dashoffset: 502;
+  stroke-linecap: round;
+  animation: animate-bar 1s linear forwards;
+}
+
+.path {
+  stroke-width: 12;
+  stroke: utile.$main-color;
+  fill: none;
+  stroke-dasharray: 502;
+  stroke-dashoffset: 502;
+  stroke-linecap: round;
+}
+
+// === Animations ===
+@keyframes fillLine {
+  100% { transform: scaleX(1); }
+}
+@keyframes animate-bar {
+  100% { stroke-dashoffset: -1; }
+}
+@keyframes animate-path1 { 100% { stroke-dashoffset: 100; } }
+@keyframes animate-path2 { 100% { stroke-dashoffset: 200; } }
+@keyframes animate-path3 { 100% { stroke-dashoffset: 180; } }
+@keyframes animate-path4 { 100% { stroke-dashoffset: 130; } }
+@keyframes showText { 100% { opacity: 1; } }
+@keyframes scale3 {
+  0%   { transform: scale(0.5); }
+  50%  { color: utile.$main-color; }
+  100% { transform: scale(1.1); }
+}
+.path-1 { stroke-dashoffset: calc(502 - (502 * 0.8)); } // 80%
+.path-2 { stroke-dashoffset: calc(502 - (502 * 0.6)); } // 60%
+.path-3 { stroke-dashoffset: calc(502 - (502 * 0.65)); } // 65%
+.path-4 { stroke-dashoffset: calc(502 - (502 * 0.7)); } // 70%
+
+
+// ==== CONTACT SECTION ====}
+.contact {
+  position: relative;
+  min-height: 50vh;
+  @include utile.flexBox(flex, center, flex-start, column);
+  padding: 60px 20px;
+  gap: 40px;
+
+  // ===== Heading =====
+  .contact-heading {
+    text-align: center;
+
+    h2 {
+      @include utile.font(50px, 700);
+      // color: #fff;
+      position: relative;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: var(--main-color);
+        margin: 10px auto 0;
+        border-radius: 2px;
+        animation: underlineAnim 2s infinite;
+      }
+    }
+  }
+
+  // ===== Contact Boxes =====
+  .contact-container {
+    width: 100%;
+    @include utile.flexBox(flex, space-around, flex-start, row, wrap);
+    gap: 30px;
+
+    .contact-box {
+      width: 300px;
+      @include utile.flexBox(flex, flex-start, center);
+      gap: 20px;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba(255,255,255,0.15);
+        transform: translateY(-5px);
+      }
+
+      .icon {
+        @include utile.size(60px, 60px);
+        @include utile.flexBox(flex, center, center);
+        border-radius: 50%;
+        background: var(--main-color);
+        font-size: 28px;
+        color: #fff;
+        animation: scaleIcon 3s ease-in-out infinite;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+
+        h3 {
+          @include utile.font(20px, 600);
+          color: #00bcd4;
+          margin-bottom: 5px;
+        }
+
+        p {
+          @include utile.font(15px, 300);
+
+          a {
+            color: #fff;
+            text-decoration: underline;
+            transition: 0.3s;
+
+            &:hover {
+              color: #00bcd4;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ==== ANIMATIONS ====
+@keyframes scaleIcon {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.1); background-color: rgb(108, 16, 151); }
+  100% { transform: scale(0.8); }
+}
+
+@keyframes underlineAnim {
+  0% { width: 0; opacity: 0; }
+  50% { width: 80px; opacity: 1; }
+  100% { width: 0; opacity: 0; }
+}
+
+
+
